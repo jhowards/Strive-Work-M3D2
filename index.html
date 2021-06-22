@@ -664,7 +664,13 @@ body{
             font-size: 20px;
           }
 
-          .artisttitle:hover{
+          .eminemtitle{
+            font-family: "Montserrat", sans-serif;
+            font-weight: bold;
+            font-size: 20px;
+          }
+
+          .eminemtitle:hover{
             cursor:pointer;
             background-color: grey;
           }
@@ -961,7 +967,7 @@ body{
               const listItem = document.createElement("li");
               listItem.classList.add("list-group-item");
               listItem.classList.add("list-group-item-dark");
-              listItem.classList.add("artisttitle");
+              listItem.classList.add("eminemtitle");
               listItem.addEventListener("click", loadData);
               listItem.innerText = eminem.name + " - " + eminem.type;
 
@@ -1026,7 +1032,7 @@ body{
 
 
           <ul id="myList" class="list-group"></ul>
-          <button type="button" class="btn btn-primary mt-4" onclick="loadData()">Track List</button>
+          <!-- <button type="button" class="btn btn-primary mt-4" onclick="loadData()">Album List</button> -->
           <ul id="listAlbums" class="list-group mt-4 mb-4"></ul>
 
           <script>
@@ -1057,6 +1063,15 @@ body{
 
                         list.appendChild(listItem);
                       }
+
+                      const uniquebutton = document.createElement("button")
+                      uniquebutton.classList.add("btn");
+                      uniquebutton.classList.add("btn-primary");
+                      uniquebutton.classList.add("mt-4");
+                      uniquebutton.onclick = uniqueAlbums
+                      uniquebutton.innerText = "Count Unique";
+                      list.appendChild(uniquebutton);
+
                     })
                     .catch((err) => alert(err.message));
                     };
@@ -1064,7 +1079,13 @@ body{
                     const deleteData = () => {
                   const list = document.getElementById("listAlbums");
                   list.innerHTML = "";
-              }
+                    }
+
+                    const uniqueAlbums = () => {
+                      // const list = document.getElementById("listAlbums").length;
+                      const list = document.querySelectorAll("#listAlbums li").length;
+                      alert("There are " + list + " unique albums on the page.")
+                    }
 
             // ALBUM TRACK LIST
 
