@@ -926,9 +926,25 @@ body{
         </div>
         <div class="container-fluid mt-5">
 
-          <div></div>
+          <ul class="list-group">
+            <li class="list-group-item">An item</li>
+            
+          </ul>
 
-
+          <script>
+             fetch("https://deezerdevs-deezer.p.rapidapi.com/artist/eminem", {
+              "method": "GET",
+              "headers": {
+                "x-rapidapi-key": "d563734190msh3b9e8ec64e90bdbp1a49d0jsn2fbdc71f2afb",
+                "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com"
+              }
+            })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => {
+              console.error(err);
+            });
+          </script>
 
 
 
