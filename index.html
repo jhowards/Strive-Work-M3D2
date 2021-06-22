@@ -658,11 +658,23 @@ body{
             color: inherit;
           }
 
-          .list-group-item{
+          .artisttitle{
             font-family: "Montserrat", sans-serif;
             font-weight: bold;
             font-size: 20px;
           }
+
+          .artisttitle:hover{
+            cursor:pointer;
+            background-color: grey;
+          }
+
+          .albumlist{
+            font-family: "Montserrat", sans-serif;
+            font-weight: 500;
+            font-size: 20px;
+          }
+
 
     </style>
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
@@ -949,6 +961,8 @@ body{
               const listItem = document.createElement("li");
               listItem.classList.add("list-group-item");
               listItem.classList.add("list-group-item-dark");
+              listItem.classList.add("artisttitle");
+              listItem.addEventListener("click", loadData);
               listItem.innerText = eminem.name + " - " + eminem.type;
 
               list.appendChild(listItem);
@@ -971,6 +985,7 @@ body{
               const listItem = document.createElement("li");
               listItem.classList.add("list-group-item");
               listItem.classList.add("list-group-item-dark");
+              listItem.classList.add("artisttitle");
               listItem.innerText = metallica.name + " - " + metallica.type;
 
               list.appendChild(listItem);
@@ -992,6 +1007,7 @@ body{
               const listItem = document.createElement("li");
               listItem.classList.add("list-group-item");
               listItem.classList.add("list-group-item-dark");
+              listItem.classList.add("artisttitle");
               listItem.innerText = behemoth.name + " - " + behemoth.type;
 
               list.appendChild(listItem);
@@ -1011,7 +1027,7 @@ body{
 
           <ul id="myList" class="list-group"></ul>
           <button type="button" class="btn btn-primary mt-4" onclick="loadData()">List Albums</button>
-          <ul id="listAlbums" class="list-group mt-4"></ul>
+          <ul id="listAlbums" class="list-group mt-4 mb-4"></ul>
 
           <script>
            
@@ -1027,6 +1043,8 @@ body{
                       const listItem = document.createElement("li");
                       listItem.classList.add("list-group-item");
                         listItem.classList.add("list-group-item-primary");
+                        listItem.classList.add("artisttitle");
+                        listItem.addEventListener("click", deleteData);
                         listItem.innerText = "Album:  " + album.artist.name + " - " + album.title;
                         list.appendChild(listItem);
 
@@ -1034,6 +1052,7 @@ body{
                         const listItem = document.createElement("li");
                         listItem.classList.add("list-group-item");
                         listItem.classList.add("list-group-item-dark");
+                        listItem.classList.add("albumlist");
                         listItem.innerText = albumtracks[i].title;
 
                         list.appendChild(listItem);
@@ -1042,6 +1061,11 @@ body{
                     .catch((err) => alert(err.message));
                     };
 
+
+              const deleteData = () => {
+                const list = document.getElementById("listAlbums");
+                list.innerHTML = "";
+              }
                  
           </script>
 
