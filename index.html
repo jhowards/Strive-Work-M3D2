@@ -658,6 +658,12 @@ body{
             color: inherit;
           }
 
+          .list-group-item{
+            font-family: "Montserrat", sans-serif;
+            font-weight: bold;
+            font-size: 20px;
+          }
+
     </style>
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
   </head>
@@ -926,25 +932,88 @@ body{
         </div>
         <div class="container-fluid mt-5">
 
-          <ul class="list-group">
-            <li class="list-group-item">An item</li>
-            
-          </ul>
 
           <script>
-             fetch("https://deezerdevs-deezer.p.rapidapi.com/artist/eminem", {
-              "method": "GET",
-              "headers": {
-                "x-rapidapi-key": "d563734190msh3b9e8ec64e90bdbp1a49d0jsn2fbdc71f2afb",
-                "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com"
-              }
+            window.onload = () => {
+
+              // EMINEM
+
+              fetch("https://striveschool-api.herokuapp.com/api/deezer/artist/eminem", {
             })
-            .then(res => res.json())
-            .then(data => console.log(data))
+            .then((resp) => {
+              return resp.json();
+            })
+            .then((eminem) => {
+              const list = document.getElementById("myList")
+              
+              const listItem = document.createElement("li");
+              listItem.classList.add("list-group-item");
+              listItem.classList.add("list-group-item-dark");
+              listItem.innerText = eminem.name + " - " + eminem.type;
+
+              list.appendChild(listItem);
+             
+            })
+            .catch(err => {
+              console.error(err);
+            }); 
+
+            // METALLICA
+
+            fetch("https://striveschool-api.herokuapp.com/api/deezer/artist/metallica", {
+            })
+            .then((resp) => {
+              return resp.json();
+            })
+            .then((metallica) => {
+              const list = document.getElementById("myList")
+              
+              const listItem = document.createElement("li");
+              listItem.classList.add("list-group-item");
+              listItem.classList.add("list-group-item-dark");
+              listItem.innerText = metallica.name + " - " + metallica.type;
+
+              list.appendChild(listItem);
+            })
+            .catch(err => {
+              console.error(err);
+            }); 
+
+            // BEHEMOTH
+
+            fetch("https://striveschool-api.herokuapp.com/api/deezer/artist/behemoth", {
+            })
+            .then((resp) => {
+              return resp.json();
+            })
+            .then((behemoth) => {
+              const list = document.getElementById("myList")
+              
+              const listItem = document.createElement("li");
+              listItem.classList.add("list-group-item");
+              listItem.classList.add("list-group-item-dark");
+              listItem.innerText = behemoth.name + " - " + behemoth.type;
+
+              list.appendChild(listItem);
+            })
             .catch(err => {
               console.error(err);
             });
+
+
+
+            }
+            
+             
           </script>
+
+
+
+          <ul id="myList" class="list-group"></ul>
+          <button type="button" class="btn btn-primary mt-4">List Albums</button>
+          <ul id="listAlbums" class="list-group"></ul>
+
+          
 
 
 
