@@ -1026,34 +1026,34 @@ body{
 
 
           <ul id="myList" class="list-group"></ul>
-          <button type="button" class="btn btn-primary mt-4" onclick="loadData()">List Albums</button>
+          <button type="button" class="btn btn-primary mt-4" onclick="loadData()">Track List</button>
           <ul id="listAlbums" class="list-group mt-4 mb-4"></ul>
 
           <script>
            
-                const loadData = () => {
-                  fetch("https://striveschool-api.herokuapp.com/api/deezer/album/72000342")
+           const loadData = () => {
+                  fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=eminem")
                     .then((resp) => {
                       return resp.json();
                     })
-                    .then((album) => {
+                    .then((albums) => {
                       const list = document.getElementById("listAlbums");
-                      const albumtracks = album.tracks.data
+
 
                       const listItem = document.createElement("li");
                       listItem.classList.add("list-group-item");
                         listItem.classList.add("list-group-item-primary");
                         listItem.classList.add("artisttitle");
                         listItem.addEventListener("click", deleteData);
-                        listItem.innerText = "Album:  " + album.artist.name + " - " + album.title;
+                        listItem.innerText = "Artist:  " + albums.data[0].artist.name;
                         list.appendChild(listItem);
 
-                      for (let i = 0; i < albumtracks.length; i++) {
+                      for (let i = 0; i < albums.data.length; i++) {
                         const listItem = document.createElement("li");
                         listItem.classList.add("list-group-item");
                         listItem.classList.add("list-group-item-dark");
                         listItem.classList.add("albumlist");
-                        listItem.innerText = albumtracks[i].title;
+                        listItem.innerText = albums.data[i].title;
 
                         list.appendChild(listItem);
                       }
@@ -1061,11 +1061,48 @@ body{
                     .catch((err) => alert(err.message));
                     };
 
-
-              const deleteData = () => {
-                const list = document.getElementById("listAlbums");
-                list.innerHTML = "";
+                    const deleteData = () => {
+                  const list = document.getElementById("listAlbums");
+                  list.innerHTML = "";
               }
+
+            // ALBUM TRACK LIST
+
+              //   const loadData = () => {
+              //     fetch("https://striveschool-api.herokuapp.com/api/deezer/album/72000342")
+              //       .then((resp) => {
+              //         return resp.json();
+              //       })
+              //       .then((album) => {
+              //         const list = document.getElementById("listAlbums");
+              //         const albumtracks = album.tracks.data
+
+              //         const listItem = document.createElement("li");
+              //         listItem.classList.add("list-group-item");
+              //           listItem.classList.add("list-group-item-primary");
+              //           listItem.classList.add("artisttitle");
+              //           listItem.addEventListener("click", deleteData);
+              //           listItem.innerText = "Album:  " + album.artist.name + " - " + album.title;
+              //           list.appendChild(listItem);
+
+              //         for (let i = 0; i < albumtracks.length; i++) {
+              //           const listItem = document.createElement("li");
+              //           listItem.classList.add("list-group-item");
+              //           listItem.classList.add("list-group-item-dark");
+              //           listItem.classList.add("albumlist");
+              //           listItem.innerText = albumtracks[i].title;
+
+              //           list.appendChild(listItem);
+              //         }
+              //       })
+              //       .catch((err) => alert(err.message));
+              //       };
+
+
+              // const deleteData = () => {
+              //   const list = document.getElementById("listAlbums");
+              //   list.innerHTML = "";
+              // }
                  
           </script>
 
